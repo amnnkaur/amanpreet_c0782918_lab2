@@ -14,25 +14,26 @@
 		
 		//Your code goes here
 
-			var table = document.createElement("table");
-			var body = document.createElement("tbody");
+			var table = document.createElement("TABLE");
+			var body = document.createElement("TBODY");
 	
             var rows = document.getElementById("t1");
             var columns = document.getElementById("t2");
-			let colsValue
+			let flag
+			// let clearTag = document.getElementsByTagName("HTML")
 
 		function generateTable(){
 
 			table.appendChild(body);
 
-			colsValue = parseInt(columns.value);
+			flag = parseInt(columns.value);
 
 			for (var x = 0; x < rows.value; x++) {
-    			let tableRow = document.createElement('tr');
+    			let tableRow = document.createElement('TR');
     			body.appendChild(tableRow);
 
     			for (var y = 0; y < columns.value; y++) {
-      			let tableData = document.createElement('td');
+      			let tableData = document.createElement('TD');
       			
 
 				var text = document.createTextNode("cell");
@@ -41,6 +42,12 @@
    					 }
   				}
  			 	document.body.appendChild(table);
+
+				document.getElementsByTagName("html")[0].style.fontSize = "0"
+				document.getElementById("t1").style.display="none"
+				document.getElementById("t2").style.display="none"
+				document.getElementById("b1").style.display="none"
+				document.getElementsByTagName("font")[0].style.fontSize = "0"
 				
 
 		}
@@ -48,13 +55,10 @@
 		function addRow() 
 	   {
 
-		let newRow = table.insertRow(-1);
-				let tblBodyObj = table.tBodies[0];
-				for(let i=colsValue-1;i>=0;i--){
-				let newCell = newRow.insertCell(0);
-
-				let newText = document.createTextNode("cell");
-				newCell.appendChild(newText);
+		let row = table.insertRow(-1);
+				for(let i=flag-1;i>=0;i--){
+				let cell = row.insertCell(0);
+				cell.appendChild(document.createTextNode("cell"));
 			}
 		
 		
@@ -62,13 +66,13 @@
 
 		function addColumn(){
 		
-		var tblBodyObj = table.tBodies[0];
-		for (var i=0; i<tblBodyObj.rows.length; i++) {
-			var newCell = tblBodyObj.rows[i].insertCell(-1);
-			newCell.innerHTML = "cell"
+		var tableBody = table.tBodies[0];
+		for (var i=0; i<tableBody.rows.length; i++) {
+			var cell = tableBody.rows[i].insertCell(-1);
+			cell.appendChild(document.createTextNode("cell"));
 		}
-				colsValue = colsValue + 1
-			};
+		flag = flag + 1
+		}
 	
 	</script>
 	
