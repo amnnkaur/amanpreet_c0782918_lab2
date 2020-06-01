@@ -14,22 +14,40 @@
 		
 		//Your code goes here
 
-		function generateTable(rows, columns){
+			var table = document.createElement("table");
+			var body = document.createElement("body");
+			var tblbodyTag = document.getElementsByTagName("tblbody")[0];
+            var rows = document.getElementById("t1");
+            var columns = document.getElementById("t2");
 
-        	let table = document.createElement('table');
+		function generateTable(){
 
-			for(var x = 0; x < rows; x++){
-				let tRows = document.createElement('tr');
+			// table.appendChild(body);
 
-				for(var y = 0; y < columns; y++){
-					let tData = document.createElement('td');
+			table.style.border = "2px";
 
-					tData.innerHTML = "row" + "[" + x + "]" + "col" + "[" + y + "]";
+			for(var x = 0; x < rows.value; x++){
+				var tRows = document.createElement("tr");
+
+				for(var y = 0; y < columns.value; y++){
+					var tData = document.createElement("td");
+
+					var cellText = document.createTextNode("row" + "[" + x + "]" + "col" + "[" + y + "]");
+
+					tData.appendChild(cellText);
                     tRows.appendChild(tData);
 
 				}
+			
+				document.body.appendChild(tRows);
+				
 		    }
+
+			table.appendChild(body);
+			tblbodyTag.appendChild(table);
+
 		}
+
 	</script>
 	
 </html>
