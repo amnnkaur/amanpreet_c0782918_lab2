@@ -15,39 +15,61 @@
 		//Your code goes here
 
 			var table = document.createElement("table");
-			var body = document.createElement("body");
-			var tblbodyTag = document.getElementsByTagName("tblbody")[0];
+			var body = document.createElement("tbody");
+	
             var rows = document.getElementById("t1");
             var columns = document.getElementById("t2");
+			let colsValue
 
 		function generateTable(){
 
-			// table.appendChild(body);
-
-			table.style.border = "2px";
-
-			for(var x = 0; x < rows.value; x++){
-				var tRows = document.createElement("tr");
-
-				for(var y = 0; y < columns.value; y++){
-					var tData = document.createElement("td");
-
-					var cellText = document.createTextNode("row" + "[" + x + "]" + "col" + "[" + y + "]");
-
-					tData.appendChild(cellText);
-                    tRows.appendChild(tData);
-
-				}
-			
-				document.body.appendChild(tRows);
-				
-		    }
-
 			table.appendChild(body);
-			tblbodyTag.appendChild(table);
+
+			colsValue = parseInt(columns.value);
+
+			for (var x = 0; x < rows.value; x++) {
+    			let tableRow = document.createElement('tr');
+    			body.appendChild(tableRow);
+
+    			for (var y = 0; y < columns.value; y++) {
+      			let tableData = document.createElement('td');
+      			
+
+				var text = document.createTextNode("cell");
+      			tableData.appendChild(text);
+      			tableRow.appendChild(tableData);
+   					 }
+  				}
+ 			 	document.body.appendChild(table);
+				
 
 		}
 
+		function addRow() 
+	   {
+
+		let newRow = table.insertRow(-1);
+				let tblBodyObj = table.tBodies[0];
+				for(let i=colsValue-1;i>=0;i--){
+				let newCell = newRow.insertCell(0);
+
+				let newText = document.createTextNode("cell");
+				newCell.appendChild(newText);
+			}
+		
+		
+		}
+
+		function addColumn(){
+		
+		var tblBodyObj = table.tBodies[0];
+		for (var i=0; i<tblBodyObj.rows.length; i++) {
+			var newCell = tblBodyObj.rows[i].insertCell(-1);
+			newCell.innerHTML = "cell"
+		}
+				colsValue = colsValue + 1
+			};
+	
 	</script>
 	
 </html>
